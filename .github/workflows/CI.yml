@@ -39,4 +39,4 @@ jobs:
     steps:
       - name: Ganache Docker
         id: ganache
-        uses: action/deploy-ganache@v1
+        uses: actions/deploy-ganache@v1
