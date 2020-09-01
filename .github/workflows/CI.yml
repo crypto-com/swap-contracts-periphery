@@ -34,9 +34,9 @@ jobs:
       - run: yarn lint
       - run: yarn test
   deploy-ganache:
-    runs-on: [ubuntu]
-    name: Deploy to Truffle
+    runs-on: [ubuntu-latest]
+    name: Deploy to Ganache
     steps:
-      - name: Hello world action step
-        id: hello
+      - name: Ganache Docker
+        id: ganache
         uses: action/deploy-ganache@v1
