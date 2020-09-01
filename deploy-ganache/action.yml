@@ -1,6 +1,0 @@
-# action.yml
-name: 'Deploy Ganache'
-description: 'This yml deploy to Ganache'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
