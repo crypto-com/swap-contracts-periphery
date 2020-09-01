@@ -34,9 +34,12 @@ jobs:
       - run: yarn lint
       - run: yarn test
   deploy-ganache:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     name: Deploy to Ganache
+    services:
+      ganache:
+        image: trufflesuite/ganache-cli
+        ports:
+          - 8545:8545
     steps:
-      - name: Ganache Docker
-        id: ganache
-        uses: actions/deploy-ganache@v1
+      - uses: actions/checkout@v1
