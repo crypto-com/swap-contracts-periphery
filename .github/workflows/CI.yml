@@ -33,3 +33,10 @@ jobs:
 
       - run: yarn lint
       - run: yarn test
+  deploy-ganache:
+    runs-on: [ubuntu]
+    name: Deploy to Truffle
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: action/deploy-ganache@v1
