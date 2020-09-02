@@ -60,6 +60,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$GITHUB_PRIVATE_KEY" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa
-        with:
+        shell: bash
+        env:
           GITHUB_PRIVATE_KEY: ${{ secrets.READ_ONLY_GITHUB_SSH_KEY }}
       - run: yarn truffle-migrate
