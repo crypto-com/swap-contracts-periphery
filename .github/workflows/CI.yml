@@ -56,5 +56,6 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-yarn-
 
+      - run: yarn update-submodules
       - run: yarn
       - run: yarn truffle

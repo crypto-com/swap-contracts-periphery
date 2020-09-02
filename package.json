@@ -45,7 +45,8 @@
     "pretest": "yarn compile",
     "test": "mocha",
     "prepublishOnly": "yarn test",
-    "truffle": "./node_modules/.bin/truffle migrate"
+    "truffle-migrate": "./node_modules/.bin/truffle migrate --reset",
+    "update-submodules": "git submodule update --init --recursive --remote"
   },
   "license": "GPL-3.0-or-later"
 }
