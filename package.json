@@ -46,11 +46,11 @@
     "pretest": "yarn compile",
     "test": "mocha",
     "prepublishOnly": "yarn test",
+    "pretruffle-migrate": "yarn install-all && yarn deploy-core && yarn deploy-weth",
     "truffle-migrate": "./node_modules/.bin/truffle migrate --reset",
-    "update-submodules": "git submodule update --init --recursive --remote",
+    "install-all": "node install.js",
     "deploy-core": "./deploy-core.sh",
-    "deploy-weth": "node ./WETH/deploy.js",
-    "install-all": "node install.js"
+    "deploy-weth": "node ./WETH/deploy.js"
   },
   "license": "GPL-3.0-or-later"
 }
