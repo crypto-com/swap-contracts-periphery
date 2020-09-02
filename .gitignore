@@ -1,3 +1,5 @@
 build/
 node_modules/
 swap-contracts-core
+WETH/contract.json
+og_package.json
