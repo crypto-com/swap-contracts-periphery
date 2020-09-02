@@ -50,7 +50,8 @@
     "update-submodules": "git submodule update --init --recursive --remote",
     "deploy-core": "./deploy-core.sh",
     "deploy-weth": "node ./WETH/deploy.js",
-    "install-all": "node install.js"
+    "install-all": "node install.js",
+    "build": "yarn install-all"
   },
   "license": "GPL-3.0-or-later"
 }
