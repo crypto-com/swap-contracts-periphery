@@ -41,8 +41,6 @@ jobs:
         image: trufflesuite/ganache-cli
         ports:
           - 8545:8545
-        options: >-
-          -l 130000000
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -58,8 +56,4 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-yarn-
 
-      - run: yarn update-submodules
-      - run: yarn
-      - run: yarn deploy-core
-      - run: yarn deploy-weth
       - run: yarn truffle-migrate
