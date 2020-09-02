@@ -17,7 +17,8 @@
   "dependencies": {
     "@uniswap/lib": "1.1.1",
     "@uniswap/v2-core": "1.0.0",
-    "truffle": "^5.1.42"
+    "truffle": "^5.1.42",
+    "web3": "^1.2.11"
   },
   "devDependencies": {
     "@types/chai": "^4.2.6",
@@ -46,7 +47,9 @@
     "test": "mocha",
     "prepublishOnly": "yarn test",
     "truffle-migrate": "./node_modules/.bin/truffle migrate --reset",
-    "update-submodules": "git submodule update --init --recursive --remote"
+    "update-submodules": "git submodule update --init --recursive --remote",
+    "deploy-core": "./deploy-core.sh",
+    "deploy-weth": "node ./WETH/deploy.js"
   },
   "license": "GPL-3.0-or-later"
 }
