@@ -1,4 +1,4 @@
 [submodule "swap-contracts-core"]
 	path = swap-contracts-core
 	url = git@github.com:crypto-com/swap-contracts-core.git
-    branch = feature/SWAP-2-Continous-Delivery
+	branch = feature/SWAP-2-Continous-Delivery
