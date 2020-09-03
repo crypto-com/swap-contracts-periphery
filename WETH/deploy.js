@@ -24,4 +24,5 @@ const config = require("../truffle-config");
 		address: contract._address,
 		timestamp: new Date().getTime()
 	}),"utf8");
+	process.exit(0);
 })();
