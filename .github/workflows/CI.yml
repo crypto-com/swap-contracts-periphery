@@ -68,11 +68,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to Ropsten
     if: github.ref == 'refs/heads/staging'
-    services:
-      ganache:
-        image: trufflesuite/ganache-cli
-        ports:
-          - 8545:8545
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -103,4 +98,5 @@ jobs:
         env:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
+      - run: yarn install
       - run: yarn truffle-migrate-ropsten
