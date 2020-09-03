@@ -3,8 +3,8 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const dotenv = require('dotenv');
 dotenv.config();
 
-const infuraProvider = (network) => {
-  if (network !== "development") {
+const infuraProvider = (network, networkId, gasPrice = 5000000000) => {
+  if (network === "development") {
     return {}
   }
   return {
@@ -12,8 +12,8 @@ const infuraProvider = (network) => {
      process.env.MNEMONIC,
      `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`
     ),
-    network_id: "3",
-    gasPrice: 5000000000, // 5 gwei
+    network_id: networkId,
+    gasPrice
   }
 }
 
@@ -30,7 +30,7 @@ module.exports = {
      port: 8545,
      network_id: "*"
    },
-   ropsten: infuraProvider("ropsten")
+   ropsten: infuraProvider("ropsten", "3")
   },
   //
   compilers: {
