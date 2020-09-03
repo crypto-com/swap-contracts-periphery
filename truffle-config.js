@@ -4,10 +4,17 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const infuraProvider = (network) => {
-  return new HDWalletProvider(
-   process.env.MNEMONIC,
-   `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`
-  )
+  if (network !== "development") {
+    return {}
+  }
+  return {
+    provider: new HDWalletProvider(
+     process.env.MNEMONIC,
+     `https://${network}.infura.io/v3/${process.env.INFURA_API_KEY}`
+    ),
+    network_id: "3",
+    gasPrice: 5000000000, // 5 gwei
+  }
 }
 
 module.exports = {
@@ -23,11 +30,7 @@ module.exports = {
      port: 8545,
      network_id: "*"
    },
-   ropsten: {
-     provider: infuraProvider("ropsten"),
-     network_id: "3",
-     gasPrice: 5000000000, // 5 gwei
-   }
+   ropsten: infuraProvider("ropsten")
   },
   //
   compilers: {
