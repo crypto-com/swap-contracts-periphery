@@ -63,18 +63,19 @@ jobs:
         shell: bash
         env:
           GITHUB_PRIVATE_KEY: ${{ secrets.READ_ONLY_GITHUB_SSH_KEY }}
-      - name: Create .env for core
-        run: |
-          echo "INFURA_API_KEY=$INFURA_API_KEY" >> swap-contracts-core/.env
-          echo "MNEMONIC=$MNEMONIC" >> swap-contracts-core/.env
-        shell: bash
-        env:
-          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
-          MNEMONIC: ${{ secrets.MNEMONIC }}
       - name: Create .env
         run: |
           echo "INFURA_API_KEY=$INFURA_API_KEY" >> .env
           echo "MNEMONIC=$MNEMONIC" >> .env
+        shell: bash
+        env:
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+          MNEMONIC: ${{ secrets.MNEMONIC }}
+      - run: yarn install-all
+      - name: Create .env for core
+        run: |
+          echo "INFURA_API_KEY=$INFURA_API_KEY" >> swap-contracts-core/.env
+          echo "MNEMONIC=$MNEMONIC" >> swap-contracts-core/.env
         shell: bash
         env:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
@@ -106,6 +107,7 @@ jobs:
         shell: bash
         env:
           GITHUB_PRIVATE_KEY: ${{ secrets.READ_ONLY_GITHUB_SSH_KEY }}
+      - run: yarn install-all
       - name: Create .env for core
         run: |
           echo "INFURA_API_KEY=$INFURA_API_KEY" >> swap-contracts-core/.env
@@ -122,6 +124,5 @@ jobs:
         env:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
-      - run: yarn
       - run: yarn deploy-core-ropsten
       - run: yarn truffle-migrate-ropsten
