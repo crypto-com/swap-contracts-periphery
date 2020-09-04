@@ -1,2 +1,6 @@
 build/
 node_modules/
+swap-contracts-core
+WETH/contract-development.json
+og_package.json
+.env
