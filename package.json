@@ -52,7 +52,8 @@
     "truffle-migrate": "./node_modules/.bin/truffle migrate --reset",
     "truffle-migrate-ropsten": "./node_modules/.bin/truffle migrate --reset --network ropsten",
     "install-all": "node install.js",
-    "deploy-core": "./deploy-core.sh",
+    "deploy-core": "./deploy-core.sh development",
+    "deploy-core-ropsten": "./deploy-core.sh ropsten",
     "deploy-weth": "node ./WETH/deploy.js"
   },
   "license": "GPL-3.0-or-later"
