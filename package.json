@@ -49,12 +49,11 @@
     "test": "mocha",
     "prepublishOnly": "yarn test",
     "copy-secrets": "cp .env ./swap-contracts-core/.",
-    "pretruffle-migrate": "yarn install-all && yarn copy-secrets && yarn deploy-core && yarn deploy-weth",
-    "truffle-migrate": "./node_modules/.bin/truffle migrate --reset --network development",
-    "truffle-migrate-ropsten": "./node_modules/.bin/truffle migrate --reset --network ropsten",
+    "deploy-preparation": "yarn install-all && yarn copy-secrets && yarn deploy-core && yarn deploy-weth",
+    "truffle-migrate": "yarn deploy-preparation && ./node_modules/.bin/truffle migrate --reset --network development",
+    "truffle-migrate-ropsten": "yarn deploy-preparation && ./node_modules/.bin/truffle migrate --reset --network ropsten",
     "install-all": "node install.js",
-    "deploy-core": "./deploy-core.sh development",
-    "deploy-core-ropsten": "./deploy-core.sh ropsten",
+    "deploy-core": "./deploy-core.sh",
     "deploy-weth": "node ./WETH/deploy.js"
   },
   "license": "GPL-3.0-or-later"
