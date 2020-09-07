@@ -28,7 +28,16 @@ jobs:
           key: ${{ matrix.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ matrix.os }}-yarn-
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$GITHUB_PRIVATE_KEY" | base64 -d  > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+        shell: bash
+        env:
+          GITHUB_PRIVATE_KEY: ${{ secrets.READ_ONLY_GITHUB_SSH_KEY }}
       - run: yarn install-all
+
       - run: yarn
       - run: yarn lint
       - run: yarn test
