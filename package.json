@@ -42,7 +42,7 @@
     "lint:fix": "yarn prettier ./test/*.ts --write",
     "clean": "rimraf ./build/",
     "copy-v1-artifacts": "ncp ./buildV1 ./build",
-    "precompile": "yarn clean && yarn install-all",
+    "precompile": "yarn clean",
     "compile": "waffle .waffle.json",
     "postcompile": "yarn copy-v1-artifacts",
     "pretest": "yarn install && yarn compile",

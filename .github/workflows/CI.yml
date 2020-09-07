@@ -30,7 +30,7 @@ jobs:
             ${{ matrix.os }}-yarn-
 
       - run: yarn
-
+      - run: yarn install-all
       - run: yarn lint
       - run: yarn test
   deploy-ganache:
