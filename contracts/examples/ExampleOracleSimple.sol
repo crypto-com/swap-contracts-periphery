@@ -1,7 +1,7 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
+import '../../swap-contracts-core/contracts/interfaces/ICroDefiSwapFactory.sol';
+import '../../swap-contracts-core/contracts/interfaces/ICroDefiSwapPair.sol';
 import '@uniswap/lib/contracts/libraries/FixedPoint.sol';
 
 import '../libraries/CroDefiSwapOracleLibrary.sol';
@@ -14,7 +14,7 @@ contract ExampleOracleSimple {
 
     uint public constant PERIOD = 24 hours;
 
-    IUniswapV2Pair immutable pair;
+    ICroDefiSwapPair immutable pair;
     address public immutable token0;
     address public immutable token1;
 
@@ -25,7 +25,7 @@ contract ExampleOracleSimple {
     FixedPoint.uq112x112 public price1Average;
 
     constructor(address factory, address tokenA, address tokenB) public {
-        IUniswapV2Pair _pair = IUniswapV2Pair(CroDefiSwapLibrary.pairFor(factory, tokenA, tokenB));
+        ICroDefiSwapPair _pair = ICroDefiSwapPair(CroDefiSwapLibrary.pairFor(factory, tokenA, tokenB));
         pair = _pair;
         token0 = _pair.token0();
         token1 = _pair.token1();
