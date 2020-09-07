@@ -40,6 +40,14 @@ jobs:
 
       - run: yarn
       - run: yarn lint
+      - name: Create .env for core
+        run: |
+          echo "INFURA_API_KEY=$INFURA_API_KEY" >> swap-contracts-core/.env
+          echo "MNEMONIC=$MNEMONIC" >> swap-contracts-core/.env
+        shell: bash
+        env:
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+          MNEMONIC: ${{ secrets.MNEMONIC }}
       - run: yarn test
   deploy-ganache:
     runs-on: ubuntu-latest
