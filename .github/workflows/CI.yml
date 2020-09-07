@@ -28,9 +28,8 @@ jobs:
           key: ${{ matrix.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ matrix.os }}-yarn-
-
-      - run: yarn
       - run: yarn install-all
+      - run: yarn
       - run: yarn lint
       - run: yarn test
   deploy-ganache:
