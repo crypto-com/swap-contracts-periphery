@@ -40,6 +40,14 @@ jobs:
 
       - run: yarn
       - run: yarn lint
+      - name: Create .env
+        run: |
+          echo "INFURA_API_KEY=$INFURA_API_KEY" >> .env
+          echo "MNEMONIC=$MNEMONIC" >> .env
+        shell: bash
+        env:
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+          MNEMONIC: ${{ secrets.MNEMONIC }}
       - name: Create .env for core
         run: |
           echo "INFURA_API_KEY=$INFURA_API_KEY" >> swap-contracts-core/.env
