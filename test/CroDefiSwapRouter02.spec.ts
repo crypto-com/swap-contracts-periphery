@@ -3,7 +3,7 @@ import { solidity, MockProvider, createFixtureLoader, deployContract } from 'eth
 import { Contract } from 'ethers'
 import { BigNumber, bigNumberify } from 'ethers/utils'
 import { MaxUint256 } from 'ethers/constants'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import ICroDefiSwapPair from '../swap-contracts-core/build/contracts/ICroDefiSwapPair.json'
 
 import { v2Fixture } from './shared/fixtures'
 import { expandTo18Decimals, getApprovalDigest, MINIMUM_LIQUIDITY } from './shared/utilities'
@@ -145,7 +145,7 @@ describe('fee-on-transfer tokens', () => {
     // make a DTT<>WETH pair
     await fixture.factoryV2.createPair(DTT.address, WETH.address)
     const pairAddress = await fixture.factoryV2.getPair(DTT.address, WETH.address)
-    pair = new Contract(pairAddress, JSON.stringify(IUniswapV2Pair.abi), provider).connect(wallet)
+    pair = new Contract(pairAddress, JSON.stringify(ICroDefiSwapPair.abi), provider).connect(wallet)
   })
 
   afterEach(async function() {
