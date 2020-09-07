@@ -9,8 +9,8 @@ import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 
 import ERC20 from '../../build/ERC20.json'
 import WETH9 from '../../build/WETH9.json'
-import UniswapV1Exchange from '../../build/UniswapV1Exchange.json'
-import UniswapV1Factory from '../../build/UniswapV1Factory.json'
+import CroDefiSwapV1Exchange from '../../build/CroDefiSwapV1Exchange.json'
+import CroDefiSwapV1Factory from '../../build/CroDefiSwapV1Factory.json'
 import CroDefiSwapRouter01 from '../../build/CroDefiSwapRouter01.json'
 import CroDefiSwapMigrator from '../../build/CroDefiSwapMigrator.json'
 import CroDefiSwapRouter02 from '../../build/CroDefiSwapRouter02.json'
@@ -45,8 +45,8 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
   const WETHPartner = await deployContract(wallet, ERC20, [expandTo18Decimals(10000)])
 
   // deploy V1
-  const factoryV1 = await deployContract(wallet, UniswapV1Factory, [])
-  await factoryV1.initializeFactory((await deployContract(wallet, UniswapV1Exchange, [])).address)
+  const factoryV1 = await deployContract(wallet, CroDefiSwapV1Factory, [])
+  await factoryV1.initializeFactory((await deployContract(wallet, CroDefiSwapV1Exchange, [])).address)
 
   // deploy V2
   const factoryV2 = await deployContract(wallet, UniswapV2Factory, [wallet.address])
@@ -64,7 +64,7 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
   // initialize V1
   await factoryV1.createExchange(WETHPartner.address, overrides)
   const WETHExchangeV1Address = await factoryV1.getExchange(WETHPartner.address)
-  const WETHExchangeV1 = new Contract(WETHExchangeV1Address, JSON.stringify(UniswapV1Exchange.abi), provider).connect(
+  const WETHExchangeV1 = new Contract(WETHExchangeV1Address, JSON.stringify(CroDefiSwapV1Exchange.abi), provider).connect(
     wallet
   )
 

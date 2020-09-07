@@ -3,17 +3,17 @@ pragma solidity =0.6.6;
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
 
 import './interfaces/ICroDefiSwapMigrator.sol';
-import './interfaces/V1/IUniswapV1Factory.sol';
-import './interfaces/V1/IUniswapV1Exchange.sol';
+import './interfaces/V1/ICroDefiSwapV1Factory.sol';
+import './interfaces/V1/ICroDefiSwapV1Exchange.sol';
 import './interfaces/ICroDefiSwapRouter01.sol';
 import './interfaces/IERC20.sol';
 
 contract CroDefiSwapMigrator is ICroDefiSwapMigrator {
-    IUniswapV1Factory immutable factoryV1;
+    ICroDefiSwapV1Factory immutable factoryV1;
     ICroDefiSwapRouter01 immutable router;
 
     constructor(address _factoryV1, address _router) public {
-        factoryV1 = IUniswapV1Factory(_factoryV1);
+        factoryV1 = ICroDefiSwapV1Factory(_factoryV1);
         router = ICroDefiSwapRouter01(_router);
     }
 
@@ -25,7 +25,7 @@ contract CroDefiSwapMigrator is ICroDefiSwapMigrator {
         external
         override
     {
-        IUniswapV1Exchange exchangeV1 = IUniswapV1Exchange(factoryV1.getExchange(token));
+        ICroDefiSwapV1Exchange exchangeV1 = ICroDefiSwapV1Exchange(factoryV1.getExchange(token));
         uint liquidityV1 = exchangeV1.balanceOf(msg.sender);
         require(exchangeV1.transferFrom(msg.sender, address(this), liquidityV1), 'TRANSFER_FROM_FAILED');
         (uint amountETHV1, uint amountTokenV1) = exchangeV1.removeLiquidity(liquidityV1, 1, 1, uint(-1));
