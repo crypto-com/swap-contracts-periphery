@@ -40,39 +40,39 @@ describe('CroDefiSwapRouter02', () => {
     expect(await router.quote(bigNumberify(1), bigNumberify(100), bigNumberify(200))).to.eq(bigNumberify(2))
     expect(await router.quote(bigNumberify(2), bigNumberify(200), bigNumberify(100))).to.eq(bigNumberify(1))
     await expect(router.quote(bigNumberify(0), bigNumberify(100), bigNumberify(200))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_AMOUNT'
+      'CroDefiSwapLibrary: INSUFFICIENT_AMOUNT'
     )
     await expect(router.quote(bigNumberify(1), bigNumberify(0), bigNumberify(200))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
     await expect(router.quote(bigNumberify(1), bigNumberify(100), bigNumberify(0))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
   })
 
   it('getAmountOut', async () => {
     expect(await router.getAmountOut(bigNumberify(2), bigNumberify(100), bigNumberify(100))).to.eq(bigNumberify(1))
     await expect(router.getAmountOut(bigNumberify(0), bigNumberify(100), bigNumberify(100))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_INPUT_AMOUNT'
+      'CroDefiSwapLibrary: INSUFFICIENT_INPUT_AMOUNT'
     )
     await expect(router.getAmountOut(bigNumberify(2), bigNumberify(0), bigNumberify(100))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
     await expect(router.getAmountOut(bigNumberify(2), bigNumberify(100), bigNumberify(0))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
   })
 
   it('getAmountIn', async () => {
     expect(await router.getAmountIn(bigNumberify(1), bigNumberify(100), bigNumberify(100))).to.eq(bigNumberify(2))
     await expect(router.getAmountIn(bigNumberify(0), bigNumberify(100), bigNumberify(100))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_OUTPUT_AMOUNT'
+      'CroDefiSwapLibrary: INSUFFICIENT_OUTPUT_AMOUNT'
     )
     await expect(router.getAmountIn(bigNumberify(1), bigNumberify(0), bigNumberify(100))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
     await expect(router.getAmountIn(bigNumberify(1), bigNumberify(100), bigNumberify(0))).to.be.revertedWith(
-      'UniswapV2Library: INSUFFICIENT_LIQUIDITY'
+      'CroDefiSwapLibrary: INSUFFICIENT_LIQUIDITY'
     )
   })
 
@@ -92,7 +92,7 @@ describe('CroDefiSwapRouter02', () => {
     )
 
     await expect(router.getAmountsOut(bigNumberify(2), [token0.address])).to.be.revertedWith(
-      'UniswapV2Library: INVALID_PATH'
+      'CroDefiSwapLibrary: INVALID_PATH'
     )
     const path = [token0.address, token1.address]
     expect(await router.getAmountsOut(bigNumberify(2), path)).to.deep.eq([bigNumberify(2), bigNumberify(1)])
@@ -114,7 +114,7 @@ describe('CroDefiSwapRouter02', () => {
     )
 
     await expect(router.getAmountsIn(bigNumberify(1), [token0.address])).to.be.revertedWith(
-      'UniswapV2Library: INVALID_PATH'
+      'CroDefiSwapLibrary: INVALID_PATH'
     )
     const path = [token0.address, token1.address]
     expect(await router.getAmountsIn(bigNumberify(1), path)).to.deep.eq([bigNumberify(2), bigNumberify(1)])
