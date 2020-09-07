@@ -45,7 +45,7 @@
     "precompile": "yarn clean",
     "compile": "waffle .waffle.json",
     "postcompile": "yarn copy-v1-artifacts",
-    "pretest": "yarn compile",
+    "pretest": "yarn install && yarn compile",
     "test": "mocha",
     "prepublishOnly": "yarn test",
     "copy-secrets": "cp .env ./swap-contracts-core/.",
