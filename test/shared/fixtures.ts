@@ -7,10 +7,10 @@ import { expandTo18Decimals } from './utilities'
 import CroDefiSwapFactory from '../../swap-contracts-core/build/contracts/CroDefiSwapFactory.json'
 import ICroDefiSwapPair from '../../swap-contracts-core/build/contracts/ICroDefiSwapPair.json'
 
-import ERC20 from '../../build/ERC20.json'
-import WETH9 from '../../build/WETH9.json'
-import CroDefiSwapRouter02 from '../../build/CroDefiSwapRouter02.json'
-import RouterEventEmitter from '../../build/RouterEventEmitter.json'
+import ERC20 from '../../build/contracts/ERC20.json'
+import WETH9 from '../../build/contracts/WETH9.json'
+import CroDefiSwapRouter02 from '../../build/contracts/CroDefiSwapRouter02.json'
+import RouterEventEmitter from '../../build/contracts/RouterEventEmitter.json'
 
 const overrides = {
   gasLimit: 9999999
