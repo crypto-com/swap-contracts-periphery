@@ -12,7 +12,7 @@ import WETH9 from '../../build/WETH9.json'
 import UniswapV1Exchange from '../../build/UniswapV1Exchange.json'
 import UniswapV1Factory from '../../build/UniswapV1Factory.json'
 import CroDefiSwapRouter01 from '../../build/CroDefiSwapRouter01.json'
-import UniswapV2Migrator from '../../build/UniswapV2Migrator.json'
+import CroDefiSwapMigrator from '../../build/CroDefiSwapMigrator.json'
 import CroDefiSwapRouter02 from '../../build/CroDefiSwapRouter02.json'
 import RouterEventEmitter from '../../build/RouterEventEmitter.json'
 
@@ -59,7 +59,7 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
   const routerEventEmitter = await deployContract(wallet, RouterEventEmitter, [])
 
   // deploy migrator
-  const migrator = await deployContract(wallet, UniswapV2Migrator, [factoryV1.address, router01.address], overrides)
+  const migrator = await deployContract(wallet, CroDefiSwapMigrator, [factoryV1.address, router01.address], overrides)
 
   // initialize V1
   await factoryV1.createExchange(WETHPartner.address, overrides)

@@ -2,13 +2,13 @@ pragma solidity =0.6.6;
 
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
 
-import './interfaces/IUniswapV2Migrator.sol';
+import './interfaces/ICroDefiSwapMigrator.sol';
 import './interfaces/V1/IUniswapV1Factory.sol';
 import './interfaces/V1/IUniswapV1Exchange.sol';
 import './interfaces/ICroDefiSwapRouter01.sol';
 import './interfaces/IERC20.sol';
 
-contract UniswapV2Migrator is IUniswapV2Migrator {
+contract CroDefiSwapMigrator is ICroDefiSwapMigrator {
     IUniswapV1Factory immutable factoryV1;
     ICroDefiSwapRouter01 immutable router;
 
