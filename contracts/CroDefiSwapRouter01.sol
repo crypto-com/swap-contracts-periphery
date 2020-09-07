@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
+import '../swap-contracts-core/contracts/interfaces/ICroDefiSwapFactory.sol';
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
 
 import './libraries/CroDefiSwapLibrary.sol';
@@ -36,8 +36,8 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
         uint amountBMin
     ) private returns (uint amountA, uint amountB) {
         // create the pair if it doesn't exist yet
-        if (IUniswapV2Factory(factory).getPair(tokenA, tokenB) == address(0)) {
-            IUniswapV2Factory(factory).createPair(tokenA, tokenB);
+        if (ICroDefiSwapFactory(factory).getPair(tokenA, tokenB) == address(0)) {
+            ICroDefiSwapFactory(factory).createPair(tokenA, tokenB);
         }
         (uint reserveA, uint reserveB) = CroDefiSwapLibrary.getReserves(factory, tokenA, tokenB);
         if (reserveA == 0 && reserveB == 0) {
@@ -69,7 +69,7 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
         address pair = CroDefiSwapLibrary.pairFor(factory, tokenA, tokenB);
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
         TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
-        liquidity = IUniswapV2Pair(pair).mint(to);
+        liquidity = ICroDefiSwapPair(pair).mint(to);
     }
     function addLiquidityETH(
         address token,
@@ -91,7 +91,7 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
         TransferHelper.safeTransferFrom(token, msg.sender, pair, amountToken);
         IWETH(WETH).deposit{value: amountETH}();
         assert(IWETH(WETH).transfer(pair, amountETH));
-        liquidity = IUniswapV2Pair(pair).mint(to);
+        liquidity = ICroDefiSwapPair(pair).mint(to);
         if (msg.value > amountETH) TransferHelper.safeTransferETH(msg.sender, msg.value - amountETH); // refund dust eth, if any
     }
 
@@ -106,8 +106,8 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
         uint deadline
     ) public override ensure(deadline) returns (uint amountA, uint amountB) {
         address pair = CroDefiSwapLibrary.pairFor(factory, tokenA, tokenB);
-        IUniswapV2Pair(pair).transferFrom(msg.sender, pair, liquidity); // send liquidity to pair
-        (uint amount0, uint amount1) = IUniswapV2Pair(pair).burn(to);
+        ICroDefiSwapPair(pair).transferFrom(msg.sender, pair, liquidity); // send liquidity to pair
+        (uint amount0, uint amount1) = ICroDefiSwapPair(pair).burn(to);
         (address token0,) = CroDefiSwapLibrary.sortTokens(tokenA, tokenB);
         (amountA, amountB) = tokenA == token0 ? (amount0, amount1) : (amount1, amount0);
         require(amountA >= amountAMin, 'CroDefiSwapRouter: INSUFFICIENT_A_AMOUNT');
@@ -146,7 +146,7 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
     ) external override returns (uint amountA, uint amountB) {
         address pair = CroDefiSwapLibrary.pairFor(factory, tokenA, tokenB);
         uint value = approveMax ? uint(-1) : liquidity;
-        IUniswapV2Pair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+        ICroDefiSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         (amountA, amountB) = removeLiquidity(tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline);
     }
     function removeLiquidityETHWithPermit(
@@ -160,7 +160,7 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
     ) external override returns (uint amountToken, uint amountETH) {
         address pair = CroDefiSwapLibrary.pairFor(factory, token, WETH);
         uint value = approveMax ? uint(-1) : liquidity;
-        IUniswapV2Pair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+        ICroDefiSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         (amountToken, amountETH) = removeLiquidityETH(token, liquidity, amountTokenMin, amountETHMin, to, deadline);
     }
 
@@ -173,7 +173,7 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
             uint amountOut = amounts[i + 1];
             (uint amount0Out, uint amount1Out) = input == token0 ? (uint(0), amountOut) : (amountOut, uint(0));
             address to = i < path.length - 2 ? CroDefiSwapLibrary.pairFor(factory, output, path[i + 2]) : _to;
-            IUniswapV2Pair(CroDefiSwapLibrary.pairFor(factory, input, output)).swap(amount0Out, amount1Out, to, new bytes(0));
+            ICroDefiSwapPair(CroDefiSwapLibrary.pairFor(factory, input, output)).swap(amount0Out, amount1Out, to, new bytes(0));
         }
     }
     function swapExactTokensForTokens(
