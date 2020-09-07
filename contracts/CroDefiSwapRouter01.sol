@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
+import '../swap-contracts-core/contracts/interfaces/ICroDefiSwapFactory.sol';
 import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
 
 import './libraries/CroDefiSwapLibrary.sol';
@@ -36,8 +36,8 @@ contract CroDefiSwapRouter01 is ICroDefiSwapRouter01 {
         uint amountBMin
     ) private returns (uint amountA, uint amountB) {
         // create the pair if it doesn't exist yet
-        if (IUniswapV2Factory(factory).getPair(tokenA, tokenB) == address(0)) {
-            IUniswapV2Factory(factory).createPair(tokenA, tokenB);
+        if (ICroDefiSwapFactory(factory).getPair(tokenA, tokenB) == address(0)) {
+            ICroDefiSwapFactory(factory).createPair(tokenA, tokenB);
         }
         (uint reserveA, uint reserveB) = CroDefiSwapLibrary.getReserves(factory, tokenA, tokenB);
         if (reserveA == 0 && reserveB == 0) {
