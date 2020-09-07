@@ -16,7 +16,7 @@ const overrides = {
 
 enum RouterVersion {
   UniswapV2Router01 = 'UniswapV2Router01',
-  UniswapV2Router02 = 'UniswapV2Router02'
+  CroDefiSwapRouter02 = 'CroDefiSwapRouter02'
 }
 
 describe('UniswapV2Router{01,02}', () => {
@@ -47,7 +47,7 @@ describe('UniswapV2Router{01,02}', () => {
       factory = fixture.factoryV2
       router = {
         [RouterVersion.UniswapV2Router01]: fixture.router01,
-        [RouterVersion.UniswapV2Router02]: fixture.router02
+        [RouterVersion.CroDefiSwapRouter02]: fixture.router02
       }[routerVersion as RouterVersion]
       pair = fixture.pair
       WETHPair = fixture.WETHPair
@@ -369,7 +369,7 @@ describe('UniswapV2Router{01,02}', () => {
           expect(receipt.gasUsed).to.eq(
             {
               [RouterVersion.UniswapV2Router01]: 101876,
-              [RouterVersion.UniswapV2Router02]: 101898
+              [RouterVersion.CroDefiSwapRouter02]: 101898
             }[routerVersion as RouterVersion]
           )
         }).retries(3)
@@ -518,7 +518,7 @@ describe('UniswapV2Router{01,02}', () => {
           expect(receipt.gasUsed).to.eq(
             {
               [RouterVersion.UniswapV2Router01]: 138770,
-              [RouterVersion.UniswapV2Router02]: 138770
+              [RouterVersion.CroDefiSwapRouter02]: 138770
             }[routerVersion as RouterVersion]
           )
         }).retries(3)

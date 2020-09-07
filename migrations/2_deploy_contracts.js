@@ -1,4 +1,4 @@
-const UniswapV2Router02 = artifacts.require("UniswapV2Router02");
+const CroDefiSwapRouter02 = artifacts.require("CroDefiSwapRouter02");
 const fs = require("fs");
 
 module.exports = (deployer, network, account) => {
@@ -7,5 +7,5 @@ module.exports = (deployer, network, account) => {
 	const coreFactoryNetwork = Object.keys(coreFactoryJSON.networks)[0];
 	const coreFactoryAddress = coreFactoryJSON.networks[coreFactoryNetwork].address;
 
-	deployer.deploy(UniswapV2Router02, coreFactoryAddress, WETH.address);
+	deployer.deploy(CroDefiSwapRouter02, coreFactoryAddress, WETH.address);
 };
