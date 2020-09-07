@@ -19,7 +19,7 @@ enum RouterVersion {
   CroDefiSwapRouter02 = 'CroDefiSwapRouter02'
 }
 
-describe('UniswapV2Router{01,02}', () => {
+describe('CroDefiSwapRouter{01,02}', () => {
   for (const routerVersion of Object.keys(RouterVersion)) {
     const provider = new MockProvider({
       hardfork: 'istanbul',
