@@ -82,7 +82,7 @@ jobs:
           MNEMONIC: ${{ secrets.MNEMONIC }}
       - run: yarn deploy-core
       - run: yarn update-init-code
-      - run: yarn truffle-migrate-ganache
+      - run: yarn truffle-migrate
   deploy-ropsten:
     runs-on: ubuntu-latest
     name: Deploy to Ropsten
