@@ -80,7 +80,7 @@ jobs:
         env:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
-      - run: yarn deploy-preparation-ganache
+      - run: yarn deploy-core
       - run: yarn update-init-code
       - run: yarn truffle-migrate-ganache
   deploy-ropsten:
