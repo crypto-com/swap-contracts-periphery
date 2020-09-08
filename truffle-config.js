@@ -23,23 +23,23 @@ module.exports = {
       port: 8545,
       network_id: "*"
     },
-    // ropsten: {
-    //   provider: infuraProvider("ropsten"),
-    //   network_id: "3",
-    //   gasPrice: 5000000000, // 5 gwei
-    // },
-    // rinkeby: {
-    //   provider: infuraProvider("rinkeby"),
-    //   network_id: "4",
-    //   gas: 6000000,
-    //   gasPrice: 1000000000, // 1 gwei
-    // },
-    // kovan: {
-    //   provider: infuraProvider("kovan"),
-    //   network_id: "42",
-    //   gas: 6000000,
-    //   gasPrice: 1000000000, // 1 gwei
-    // }
+    ropsten: {
+      provider: infuraProvider("ropsten"),
+      network_id: "3",
+      gasPrice: 5000000000, // 5 gwei
+    },
+    rinkeby: {
+      provider: infuraProvider("rinkeby"),
+      network_id: "4",
+      gas: 6000000,
+      gasPrice: 1000000000, // 1 gwei
+    },
+    kovan: {
+      provider: infuraProvider("kovan"),
+      network_id: "42",
+      gas: 6000000,
+      gasPrice: 1000000000, // 1 gwei
+    }
   },
   //
   compilers: {
