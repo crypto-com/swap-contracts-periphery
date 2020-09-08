@@ -4,7 +4,7 @@ import { deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals } from './utilities'
 
-import UniswapV2Factory from '@uniswap/v2-core/build/UniswapV2Factory.json'
+import CroDefiSwapFactory from '../../swap-contracts-core/build/contracts/CroDefiSwapFactory.json'
 import ICroDefiSwapPair from '../../swap-contracts-core/build/contracts/ICroDefiSwapPair.json'
 
 import ERC20 from '../../build/ERC20.json'
@@ -49,7 +49,7 @@ export async function v2Fixture(provider: Web3Provider, [wallet]: Wallet[]): Pro
   await factoryV1.initializeFactory((await deployContract(wallet, CroDefiSwapV1Exchange, [])).address)
 
   // deploy V2
-  const factoryV2 = await deployContract(wallet, UniswapV2Factory, [wallet.address])
+  const factoryV2 = await deployContract(wallet, CroDefiSwapFactory, [wallet.address, 30, 5])
 
   // deploy routers
   const router01 = await deployContract(wallet, CroDefiSwapRouter01, [factoryV2.address, WETH.address], overrides)
