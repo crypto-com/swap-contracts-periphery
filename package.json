@@ -62,7 +62,8 @@
     "deploy-core-ropsten": "./deploy-core.sh ropsten",
     "deploy-core-rinkeby": "./deploy-core.sh rinkeby",
     "deploy-core-kovan": "./deploy-core.sh kovan",
-    "deploy-weth": "node ./WETH/deploy.js"
+    "deploy-weth": "node ./WETH/deploy.js",
+    "update-init-code": "node ./scripts/updateInitCodeHash.js"
   },
   "license": "GPL-3.0-or-later"
 }
