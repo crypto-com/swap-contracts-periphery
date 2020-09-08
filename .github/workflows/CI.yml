@@ -108,9 +108,8 @@ jobs:
         env:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
-      - run: yarn deploy-preparation-ganache
-      - run: yarn update-init-code
-      - run: yarn truffle-migrate-ganache
+      - run: yarn deploy-preparation
+      - run: yarn truffle-migrate
   deploy-ropsten:
     runs-on: ubuntu-latest
     name: Deploy to Ropsten
@@ -155,7 +154,6 @@ jobs:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
       - run: yarn deploy-core-ropsten
-      - run: yarn update-init-code
       - run: yarn truffle-migrate-ropsten
   deploy-kovan:
     runs-on: ubuntu-latest
@@ -201,5 +199,4 @@ jobs:
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
           MNEMONIC: ${{ secrets.MNEMONIC }}
       - run: yarn deploy-core-kovan
-      - run: yarn update-init-code
       - run: yarn truffle-migrate-kovan
