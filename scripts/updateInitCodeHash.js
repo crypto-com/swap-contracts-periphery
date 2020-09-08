@@ -1,9 +1,10 @@
 var Web3 = require('web3')
 const fs = require("fs");
 
+const SWAP_PAIR_PATH = "./swap-contracts-core/build/contracts/CroDefiSwapPair.json";
 const LIBRARY_PATH = "./contracts/libraries/UniswapV2Library.sol";
 
-const swapPairJSON = JSON.parse(fs.readFileSync("./swap-contracts-core/build/CroDefiSwapPair.json", "utf8"));
+const swapPairJSON = JSON.parse(fs.readFileSync(SWAP_PAIR_PATH, "utf8"));
 const UniswapV2Library = fs.readFileSync(LIBRARY_PATH, "utf8");
 
 const initCodeHash = Web3.utils.keccak256("0x" + swapPairJSON.bytecode);
