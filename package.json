@@ -17,7 +17,6 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "1.0.43",
     "@uniswap/lib": "1.1.1",
-    "@uniswap/v2-core": "1.0.0",
     "dotenv": "8.2.0",
     "truffle": "5.1.42",
     "web3": "1.2.11"
@@ -45,18 +44,26 @@
     "precompile": "yarn clean",
     "compile": "waffle .waffle.json",
     "postcompile": "yarn copy-v1-artifacts",
-    "pretest": "yarn install && yarn compile && yarn copy-secrets && yarn deploy-core",
+    "pretest": "yarn install-all && yarn install && yarn copy-secrets && yarn deploy-core && yarn compile",
     "test": "mocha",
     "prepublishOnly": "yarn test",
     "copy-secrets": "cp .env ./swap-contracts-core/.",
-    "deploy-preparation": "yarn install-all && yarn copy-secrets && yarn deploy-core && yarn deploy-weth",
-    "truffle-migrate": "yarn deploy-preparation && ./node_modules/.bin/truffle migrate --reset --network development",
-    "deploy-preparation-ropsten": "yarn install-all && yarn copy-secrets && yarn deploy-core-ropsten && yarn deploy-weth",
-    "truffle-migrate-ropsten": "yarn deploy-preparation-ropsten && ./node_modules/.bin/truffle migrate --reset --network ropsten",
+    "deploy-preparation-ganache": "yarn install-all && yarn copy-secrets && yarn deploy-core && yarn deploy-weth",
+    "deploy-preparation-ropsten": "yarn install-all && yarn copy-secrets && yarn deploy-core-ropsten",
+    "deploy-preparation-rinkeby": "yarn install-all && yarn copy-secrets && yarn deploy-core-rinkeby",
+    "deploy-preparation-kovan": "yarn install-all && yarn copy-secrets && yarn deploy-core-kovan",
+    "truffle-migrate-ganache": "./node_modules/.bin/truffle migrate --reset --network development",
+    "truffle-migrate-ropsten": "./node_modules/.bin/truffle migrate --reset --network ropsten",
+    "truffle-migrate-rinkeby": "./node_modules/.bin/truffle migrate --reset --network rinkeby",
+    "truffle-migrate-kovan": "./node_modules/.bin/truffle migrate --reset --network kovan",
     "install-all": "node install.js",
     "deploy-core": "./deploy-core.sh development",
     "deploy-core-ropsten": "./deploy-core.sh ropsten",
-    "deploy-weth": "node ./WETH/deploy.js"
+    "deploy-core-rinkeby": "./deploy-core.sh rinkeby",
+    "deploy-core-kovan": "./deploy-core.sh kovan",
+    "deploy-weth": "node ./WETH/deploy.js",
+    "update-init-code": "node ./scripts/updateInitCodeHash.js",
+    "verify-init-code": "node ./scripts/verifyInitCodeHash.js"
   },
   "license": "GPL-3.0-or-later"
 }
