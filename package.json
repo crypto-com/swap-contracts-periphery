@@ -63,7 +63,8 @@
     "deploy-core-rinkeby": "./deploy-core.sh rinkeby",
     "deploy-core-kovan": "./deploy-core.sh kovan",
     "deploy-weth": "node ./WETH/deploy.js",
-    "update-init-code": "node ./scripts/updateInitCodeHash.js"
+    "update-init-code": "node ./scripts/updateInitCodeHash.js",
+    "verify-init-code": "node ./scripts/verifyInitCodeHash.js"
   },
   "license": "GPL-3.0-or-later"
 }
