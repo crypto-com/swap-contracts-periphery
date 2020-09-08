@@ -515,8 +515,7 @@ describe('CroDefiSwapRouter{01,02}', () => {
             }
           )
           const receipt = await tx.wait()
-          expect(receipt.gasUsed[RouterVersion.CroDefiSwapRouter01]).to.lte(142270)
-          expect(receipt.gasUsed[RouterVersion.CroDefiSwapRouter02]).to.lte(142270)
+          expect(receipt.gasUsed).to.lte(142270)
         }).retries(3)
       })
 
