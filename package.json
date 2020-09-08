@@ -52,10 +52,16 @@
     "deploy-preparation": "yarn install-all && yarn copy-secrets && yarn deploy-core && yarn deploy-weth",
     "truffle-migrate": "yarn deploy-preparation && ./node_modules/.bin/truffle migrate --reset --network development",
     "deploy-preparation-ropsten": "yarn install-all && yarn copy-secrets && yarn deploy-core-ropsten && yarn deploy-weth",
+    "deploy-preparation-rinkeby": "yarn install-all && yarn copy-secrets && yarn deploy-core-rinkeby && yarn deploy-weth",
+    "deploy-preparation-kovan": "yarn install-all && yarn copy-secrets && yarn deploy-core-kovan && yarn deploy-weth",
     "truffle-migrate-ropsten": "yarn deploy-preparation-ropsten && ./node_modules/.bin/truffle migrate --reset --network ropsten",
+    "truffle-migrate-rinkeby": "yarn deploy-preparation-rinkeby && ./node_modules/.bin/truffle migrate --reset --network rinkeby",
+    "truffle-migrate-kovan": "yarn deploy-preparation-kovan && ./node_modules/.bin/truffle migrate --reset --network kovan",
     "install-all": "node install.js",
     "deploy-core": "./deploy-core.sh development",
     "deploy-core-ropsten": "./deploy-core.sh ropsten",
+    "deploy-core-rinkeby": "./deploy-core.sh rinkeby",
+    "deploy-core-kovan": "./deploy-core.sh kovan",
     "deploy-weth": "node ./WETH/deploy.js"
   },
   "license": "GPL-3.0-or-later"

@@ -1,0 +1,10 @@
+const SushiToken = artifacts.require("SushiToken");
+
+module.exports = (deployer, network, account) => {
+	deployer.deploy(SushiToken).then(contract => {
+		contract.mint(account[0], "1000000000000000000").then(contract => {
+			console.log(deployer);
+			console.log("haha");
+		});
+	});
+};
