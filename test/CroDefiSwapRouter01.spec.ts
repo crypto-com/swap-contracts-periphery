@@ -368,8 +368,8 @@ describe('CroDefiSwapRouter{01,02}', () => {
           const receipt = await tx.wait()
           expect(receipt.gasUsed).to.eq(
             {
-              [RouterVersion.CroDefiSwapRouter01]: 101876,
-              [RouterVersion.CroDefiSwapRouter02]: 101898
+              [RouterVersion.CroDefiSwapRouter01]: 105376,
+              [RouterVersion.CroDefiSwapRouter02]: 105398
             }[routerVersion as RouterVersion]
           )
         }).retries(3)
@@ -515,12 +515,7 @@ describe('CroDefiSwapRouter{01,02}', () => {
             }
           )
           const receipt = await tx.wait()
-          expect(receipt.gasUsed).to.eq(
-            {
-              [RouterVersion.CroDefiSwapRouter01]: 138770,
-              [RouterVersion.CroDefiSwapRouter02]: 138770
-            }[routerVersion as RouterVersion]
-          )
+          expect(receipt.gasUsed).to.lte(142270)
         }).retries(3)
       })
 
