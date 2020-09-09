@@ -19,4 +19,4 @@ The following assumes the use of `node@>=10`.
 ## Deploy to different environments
 
 ganache (local)
-`yarn truffle-migrate`
+`yarn truffle-migrate-ganache`
