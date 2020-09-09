@@ -18,5 +18,12 @@ The following assumes the use of `node@>=10`.
 
 ## Deploy to different environments
 
-ganache (local)
+locally if you've changed some code (e.g. ganache)
+`yarn deploy-preparation-ganache`
+`yarn update-init-code`
 `yarn truffle-migrate-ganache`
+
+CI (e.g. ropsten)
+`yarn deploy-preparation-ropsten`
+`yarn verify-init-code`
+`yarn truffle-migrate-ropsten`
