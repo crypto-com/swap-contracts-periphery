@@ -369,7 +369,7 @@ describe('CroDefiSwapRouter{01,02}', () => {
           expect(receipt.gasUsed).to.eq(
             {
               [RouterVersion.CroDefiSwapRouter01]: 105376,
-              [RouterVersion.CroDefiSwapRouter02]: 105398
+              [RouterVersion.CroDefiSwapRouter02]: 105420
             }[routerVersion as RouterVersion]
           )
         }).retries(3)
