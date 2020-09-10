@@ -21,7 +21,7 @@ library CroDefiSwapLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'516459951a4cb92d594afaa06926e60586cf705817b240a62d875cbd32b9fb4f' // init code hash
+                hex'69d637e77615df9f235f642acebbdad8963ef35c5523142078c9b8f9d0ceba7e' // init code hash
             ))));
     }
 

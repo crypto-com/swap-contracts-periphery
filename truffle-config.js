@@ -40,6 +40,12 @@ module.exports = {
       network_id: "42",
       gas: 6000000,
       gasPrice: 1000000000, // 1 gwei
+    },
+    mainnet: {
+      provider: infuraProvider("mainnet"),
+      network_id: "1",
+      gas: 6000000,
+      gasPrice: 125000000000, // 125 gwei
     }
   },
   //
